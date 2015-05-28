@@ -12,8 +12,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'quiet_assets'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -24,10 +22,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'faker'
-
-gem 'stripe'
-
-gem 'whenever'
 
 gem 'devise'
 
@@ -68,13 +62,14 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-end
+  gem 'puma'
+ end
  
 group :development do
   gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
-end
+ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -89,3 +84,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
 
+
+ 

@@ -1,0 +1,7 @@
+<%= content_tag_for :div, @event, class: "row" do %>
+  <div>
+    <h5>
+      <%= link_to "#{@event.name}", @event, class:'button-space' %>
+    </h5>
+  </div> 
+<% end %>

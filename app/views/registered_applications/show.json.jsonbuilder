@@ -1,1 +1,0 @@
-json.extract! @registered_application, :id, :app_name, :created_at, :updated_at

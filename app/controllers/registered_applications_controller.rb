@@ -1,79 +1,71 @@
 class RegisteredApplicationsController < ApplicationController
-  before_action :set_registered_application, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [ :index, :show ]
 
-  # GET /registered_applications
-  # GET /registered_applications.json
   def index
     @registered_applications = RegisteredApplication.all
   end
 
-  # GET /registered_applications/1
-  # GET /registered_applications/1.json
   def show
-    p "***************"
-    p @registered_application.inspect
-    p "***************"
+    @registered_application = RegisteredApplication.find(params[:id])
+   
+
+    @events = @registered_application.events(:group => 'name')
   end
 
-  # GET /registered_applications/new
   def new
     @registered_application = RegisteredApplication.new
+    
   end
 
-  # GET /registered_applications/1/edit
-  def edit
-  end
-
-  # POST /registered_applications
-  # POST /registered_applications.json
   def create
-    # raise "test"
-    @registered_application = RegisteredApplication.new(registered_application_params)
+    @registered_application = RegisteredApplication.new( registered_application_params.merge( user_id: current_user.id ) )
+   
 
-    respond_to do |format|
-      if @registered_application.save
-        format.html { redirect_to @registered_application, notice: 'Registered application was successfully created.' }
-        format.json { render :show, status: :created, location: @registered_application }
-      else
-        format.html { render :new }
-        format.json { render json: @registered_application.errors, status: :unprocessable_entity }
-      end
+    if @registered_application.save
+      redirect_to @registered_application, notice: "Application was registered successfully."
+    else
+      flash[:error] = "Error registering application. Please try again."
+      render :new
     end
   end
 
-  # PATCH/PUT /registered_applications/1
-  # PATCH/PUT /registered_applications/1.json
+  def edit
+    @registered_application = RegisteredApplication.find(params[:id])
+    
+  end
+
   def update
-    respond_to do |format|
-      if @registered_application.update(registered_application_params)
-        format.html { redirect_to @registered_application, notice: 'Registered application was successfully updated.' }
-        format.json { render :show, status: :ok, location: @registered_application }
-      else
-        format.html { render :edit }
-        format.json { render json: @registered_application.errors, status: :unprocessable_entity }
-      end
+    @registered_application = RegisteredApplication.find(params[:id])
+    
+
+    if @registered_application.update_attributes( registered_application_params )
+      redirect_to @registered_application, notice: "Application updated successfully."
+    else
+      flash[:error] = "Error updating applcation. Please try again."
+      render :edit
     end
   end
 
-  # DELETE /registered_applications/1
-  # DELETE /registered_applications/1.json
   def destroy
-    @registered_application.destroy
+    @registered_application = RegisteredApplication.find(params[:id])
+    name = @registered_application.name
+   
+
+    if @registered_application.destroy
+      flash[:notice] = "\"#{name}\" was deleted successfully."
+    else
+      flash[:error] = "Error deleting application. Please try again."
+    end
+
     respond_to do |format|
-      format.html { redirect_to registered_applications_url, notice: 'Registered application was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html
+      format.js
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_registered_application
-      @registered_application = RegisteredApplication.find(params[:id])
-    end
+private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def registered_application_params
-      params.require(:registered_application).permit(:app_name, :url)
-    end
+  def registered_application_params
+    params.require(:registered_application).permit(:app_name, :url, :user_id)
+  end
 end

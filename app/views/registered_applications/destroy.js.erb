@@ -1,0 +1,5 @@
+<% if @registered_application.destroyed? %>
+$('#registered_application-' + <%= @registered_application.id %>).fadeOut(900);
+<% else %>
+  $('#item-' + <%= @item.id %>).prepend("<div class='alert alert-danger'><%= flash[:error] %></div>");
+<% end %>

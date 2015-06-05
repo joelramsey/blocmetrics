@@ -1,6 +1,13 @@
-<h1>Editing Registered Application</h1>
+<div class="page-header">
+  <h1>Edit Application</h1>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @registered_application %> |
-<%= link_to 'Back', registered_applications_path %>
+<%= form_for @registered_application do |f| %>
+  <div class="form-group">
+    <%= f.label :app_name %>
+    <%= f.text_field :app_name %>
+    <%= f.label :url, "URL" %>
+    <%= f.text_field :url %>
+  </div>
+  <%= f.submit "Save", class: 'btn btn-success' %>
+<% end %>

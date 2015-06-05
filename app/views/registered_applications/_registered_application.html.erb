@@ -1,0 +1,9 @@
+<%= content_tag_for :div, registered_application, class: "row" do %>
+  <div id="registered_application-<%= registered_application.id %>">
+    <h3>
+      <%= link_to "#{registered_application.app_name}", registered_application, class:'button-space' %>
+      <%= link_to "Delete", registered_application, method: :delete, remote: true, class: 'btn btn-xs btn-danger'%>
+     
+    </h3>
+  </div> 
+<% end %>

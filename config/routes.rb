@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'about' => 'welcome#about'
   
   resources :registered_applications
-  resources :events
-
+   
+  namespace :api, defaults: { format: :json } do
+     resources :events, only: [:create]
+   end
   root to: 'welcome#index'
 end

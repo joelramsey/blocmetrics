@@ -1,4 +1,4 @@
-var Blocmetrics = {
+var blocmetrics = {
   report: function(name) {
    var _bm_event = {
       name: name

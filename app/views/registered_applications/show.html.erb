@@ -1,4 +1,5 @@
 <%= content_tag_for :div, @registered_application do %>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <div align="center">
     <h1>
       <%= "#{@registered_application.name}" %>
@@ -12,6 +13,8 @@
   <h1> Events </h1>
   <% @events.group_by(&:name).each do |name, events| %>
     <div>
+      <%= pie_chart @registered_application.events.group(:name).count %>
+      <%= line_chart @registered_application.events.group_by_day(:created_at).count %>
       <%= name %> <span class="badge"><%= events.count %></span>
     </div>
   <% end %>

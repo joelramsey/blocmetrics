@@ -13,15 +13,15 @@
   <h1> Events </h1>
   <% @events.group_by(&:name).each do |name, events| %>
     <div>
-      <%= pie_chart @registered_application.events.group(:name).count %>
-      <%= line_chart @registered_application.events.group_by_day(:created_at).count %>
       <%= name %> <span class="badge"><%= events.count %></span>
     </div>
   <% end %>
 </br>
   <div>
     <button class="btn btn-primary" type="button">
-    Total Events <span class="badge"><%= @events.count %></span>
+    Total Events <span class="badge"><%= @events.count %></span>  
     </button>
+    <%= pie_chart @registered_application.events.group(:name).count %>
+    <%= line_chart @registered_application.events.group_by_day(:created_at).count %>
   </div>
 <% end %>

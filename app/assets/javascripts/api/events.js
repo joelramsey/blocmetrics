@@ -1,10 +1,10 @@
 var blocmetrics = {
   report: function(name) {
    var _bm_event = {
-      name: name
+      name: "page hit"
       };
     var _bm_request = new XMLHttpRequest();
-    _bm_request.open("POST", "http://localhost:3000/api/events", true);
+    _bm_request.open("POST", "http://ruby-on-rails-106733.nitrousapp.com:3000/api/events", true);
     _bm_request.setRequestHeader('Content-Type', 'application/json');
     // #5
     _bm_request.onreadystatechange = function() {
@@ -15,4 +15,4 @@ var blocmetrics = {
   }
 };
 
-// javascript_include_tag "http://localhost:3000/api/events.js"
+// javascript_include_tag "http://ruby-on-rails-106733.nitrousapp.com:3000/api/events.js"

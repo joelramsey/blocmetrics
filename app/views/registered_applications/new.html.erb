@@ -2,12 +2,4 @@
   <h1>New Application</h1>
 </div>
 
-<%= form_for @registered_application do |f| %>
-  <div class="form-group">
-    <%= f.label :app_name, "Application Name" %>
-    <%= f.text_field :app_name %>
-    <%= f.label :url, "Application URL" %>
-    <%= f.text_field :url %>
-  </div>
-  <%= f.submit "Save", class: 'btn btn-success' %>
-<% end %>
+<%= render partial: 'form', locals: { registerd_application: @registered_application } %>

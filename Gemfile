@@ -23,6 +23,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'faker'
 
+gem 'rack-cors'
+
 gem 'devise'
 
 gem 'newrelic_rpm'

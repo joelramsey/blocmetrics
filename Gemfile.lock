@@ -229,6 +229,7 @@ GEM
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     rack (1.6.1)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -347,6 +348,7 @@ DEPENDENCIES
   pry-rails
   puma
   pundit
+  rack-cors
   rails (= 4.2.0)
   rails_12factor
   redcarpet

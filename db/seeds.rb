@@ -33,7 +33,7 @@ member.save!
 5.times do
   RegisteredApplication.create!(
     user: users.sample,
-    app_name: Faker::Lorem.word,
+    name: Faker::Lorem.word,
     url: Faker::Internet.url
     ) 
 
